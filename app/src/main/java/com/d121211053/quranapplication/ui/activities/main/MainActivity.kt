@@ -5,7 +5,9 @@ import android.graphics.fonts.FontFamily
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -32,10 +34,13 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -64,7 +69,9 @@ class MainActivity : ComponentActivity() {
                         )
                     },
                 ) {
-                    Column(modifier = Modifier.padding(it)) {
+                    Column(modifier = Modifier.padding(it),
+                        verticalArrangement = Arrangement.Center,
+                        horizontalAlignment = Alignment.CenterHorizontally) {
                         val mainViewModel: MainViewModel = viewModel(factory = MainViewModel.Factory)
                         ListNewsScreen(mainViewModel.mainUiState)
                     }
@@ -77,7 +84,7 @@ class MainActivity : ComponentActivity() {
         when(mainUiState) {
             is MainUiState.Success -> ListHadith(mainUiState.hadith.hadiths)
             is MainUiState.Error -> ErrorText()
-            is MainUiState.Loading -> LoadingBar()
+            is MainUiState.Loading -> LoadingScreen(modifier.size(200.dp))
         }
     }
 
@@ -87,8 +94,13 @@ class MainActivity : ComponentActivity() {
     }
 
     @Composable
-    fun LoadingBar() {
-        Text(text = "SEDANG LOADING")
+    fun LoadingScreen(modifier: Modifier = Modifier.fillMaxWidth()) {
+        Image(
+            painter = painterResource(R.drawable.loading_img),
+            contentDescription = "loading",
+            modifier = Modifier.fillMaxSize(),
+            contentScale = ContentScale.Fit
+        )
     }
 
     @Composable
@@ -108,7 +120,8 @@ class MainActivity : ComponentActivity() {
             intent.putExtra("HADITH", data)
             startActivity(intent)
         }, colors = CardDefaults.cardColors(containerColor = Color.Transparent)) {
-            Row(modifier = modifier.fillMaxWidth()) {
+            Row(modifier = modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically) {
                 Text(text = "Hadith ke-" + data.number ?: "ga tau lagi dah, pen beli truk", fontFamily= fontFamily, fontSize = 32.sp)
                 Spacer(modifier = Modifier.weight(1f))
                 Icon(Icons.Outlined.ArrowForward,
