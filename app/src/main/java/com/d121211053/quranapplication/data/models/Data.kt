@@ -10,8 +10,8 @@ import kotlinx.serialization.Serializable
 data class Data(
     @SerialName("available")
     val available: Int,
-    @SerialName("hadith")
-    val hadiths: List<Hadith> = emptyList(),
+    @SerialName("hadiths")
+    val hadiths: List<Hadith>,
     @SerialName("id")
     val id: String,
     @SerialName("name")
