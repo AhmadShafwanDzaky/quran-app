@@ -80,4 +80,6 @@ dependencies {
     implementation("com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:1.0.0")
     implementation("com.squareup.okhttp3:okhttp:4.11.0")
 
+    implementation ("androidx.compose.ui:ui-text-google-fonts:1.5.4")
+    implementation ("androidx.compose.material:material:1.5.4")
 }
