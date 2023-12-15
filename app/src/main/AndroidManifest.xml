@@ -15,6 +15,13 @@
         android:theme="@style/Theme.QuranApplication"
         tools:targetApi="31">
         <activity
+            android:name=".ui.activities.detail.HadithDetailActivity"
+            android:exported="true"
+            android:label="HadithDetailActivity"
+            android:theme="@style/Theme.QuranApplication">
+            <!-- Add any necessary intent filters or configurations -->
+        </activity>
+        <activity
             android:name=".ui.activities.main.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
