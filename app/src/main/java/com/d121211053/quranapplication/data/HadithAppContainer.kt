@@ -15,8 +15,8 @@ class DefaultHadithAppContainer: HadithAppContainer {
     private val BASE_URL = "https://api.hadith.gading.dev"
 
     private val retrofit = Retrofit.Builder()
-        .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
         .baseUrl(BASE_URL)
+        .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
         .build()
 
     private val retrofitService : ApiService by lazy {
