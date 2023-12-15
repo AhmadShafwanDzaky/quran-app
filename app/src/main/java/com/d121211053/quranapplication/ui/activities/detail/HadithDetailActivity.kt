@@ -28,6 +28,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
@@ -48,9 +49,9 @@ class HadithDetailActivity : ComponentActivity() {
             .fillMaxWidth()
             .padding(horizontal = 32.dp, vertical = 8.dp)){
             item {
-                Text(text = "Hadith ke-" + selectedHadith?.number.toString(), fontFamily= fontFamily, fontWeight = FontWeight.Medium, fontSize = 40.sp, textAlign = TextAlign.Center, modifier = Modifier.fillMaxWidth())
-                Spacer(modifier = Modifier.height(24.dp))
-                Text(text = selectedHadith?.arab.toString(), fontSize = 24.sp)
+//                Text(text = "Hadith ke-" + selectedHadith?.number.toString(), fontFamily= fontFamily, fontWeight = FontWeight.Medium, fontSize = 40.sp, textAlign = TextAlign.Center, modifier = Modifier.fillMaxWidth())
+//                Spacer(modifier = Modifier.height(24.dp))
+                Text(text = selectedHadith?.arab.toString(), fontSize = 24.sp, textAlign = TextAlign.End, lineHeight = 2.em)
                 Spacer(modifier = Modifier.height(24.dp))
                 Text(text = "Terjemahan", fontFamily= fontFamily, fontWeight = FontWeight.Medium, fontSize = 20.sp)
                 Spacer(modifier = Modifier.height(12.dp))
@@ -58,7 +59,7 @@ class HadithDetailActivity : ComponentActivity() {
             }
         }
     }
-    
+
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -70,11 +71,9 @@ class HadithDetailActivity : ComponentActivity() {
                         TopAppBar(
                             title = {
                                 Text(
-                                    text = "HadithApp",
+                                    text = "Hadith ke-" + selectedHadith?.number.toString(),
                                     fontFamily = fontFamily,
                                     fontWeight = FontWeight.SemiBold,
-                                    textAlign = TextAlign.Center,
-                                    modifier = Modifier.fillMaxWidth()
                                 )
                             },
                             navigationIcon = {
